@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="f1" method="post">
+    <table border="1">
+      {% csrf_token %}
+      {{ form1.as_table }}
+
+   </table>
+    <input type="submit" value="submit">
+{% if messages %}
+    <ul class="messages">
+
+        {% for message in messages %}
+        <li {% if message.tags %} class ="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</form>
+
+<table border="1">
+    <tr>
+        <th>Destination </th>
+    </tr>
+    {% for dest in destination %}
+     <tr>
+
+        <td>{{ dest.Destination }}</td>
+         <td>
+             <a href="{% url 'updateDestination' dest.id %}">edit</a>
+             <a href="{% url 'delDestination' dest.id %}">delete</a>
+         </td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

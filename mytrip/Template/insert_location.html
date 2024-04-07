@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="f1" method="post">
+    <table border="1">
+      {% csrf_token %}
+      {{ form1.as_table }}
+   </table>
+    <input type="submit" value="submit">
+
+
+</form>
+
+<table border="1">
+    <tr>
+        <th>District</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Hw_to_reach</th>
+    </tr>
+    {% for loc in location %}
+     <tr>
+         <td>{{ loc.district }}</td>
+            <td>{{ loc.Location }}</td>
+                <td>{{ loc.Description }}</td>
+                    <td>{{ loc.Hw_to_reach }}</td>                               '
+                        <td>
+                            <a href="{% url 'updatelocation' loc.id %}">edit</a>
+                            <a href="{% url 'dellocation' loc.id %}">delete</a>
+                        </td>
+
+     </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
